@@ -1,0 +1,173 @@
+<dialog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="WatsonDialogDocument_1.0.xsd">
+    <flow>
+    	<folder label="Main" id="Main">
+    		<output>
+    			<prompt selectionType="RANDOM">
+    				<item>
+    					Tell Watson your situation to contact the right people immediately.
+    				</item>
+    			</prompt>
+    			<goto ref="getUserInput_2449614" />
+    		</output>
+    		<getUserInput id="getUserInput_2449614">
+	    		<search ref="folder_2449614" />
+		    		<default>
+		    			<output>
+		    					<prompt selectionType="RANDOM">
+		    						<item>
+		    							I'm sorry I do not understand. Try using keywords such as "help" or "rescue".
+		    						</item>
+		    					</prompt>
+		    				</output>
+		    			</default>
+    		</getUserInput>
+    	</folder>
+    	<folder label="Library" id="Library">
+    		<folder label="Live Content" id="folder_2449614">
+                <input>
+                    <grammar>
+                        <item>Help</item>
+                        <item>Help me</item>
+                        <item>I need help</item>
+                        <item>Help us</item>
+                    </grammar>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>What is their situation right now?</item>
+                        </prompt>
+                        <goto ref="getUserInput_2449611" />
+                    </output>
+                    <getUserInput id="getUserInput_2449611">
+                        <search ref="folder_2449611" />
+                    </getUserInput>
+                </input>
+                <input>
+                    <grammar>
+                        <item>Rescue</item>
+                        <item>Rescue *</item>
+                        <item>* needs rescue</item>
+                        <item>Help</item>
+                        <item>Help *</item>
+                        <item> * needs help</item>
+                    </grammar>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>What is their location right now?</item>
+                            <goto ref="getUserInput_2449405" />
+                        </prompt>
+                        <getUserInput id="getUserInput_2449405">
+                            <search ref="folder_2449405" />
+                        </getUserInput>
+                    </output>
+                </input>
+    		</folder>
+    		<folder label="Situation1stPerson" id="folder_2449611">
+    			<input>
+                    <grammar>
+                        <item>Fire in *</item>
+                        <item>Fire</item>
+                        <item>* fire</item>
+                        <item>fire</item>
+                    </grammar>
+                    <action varName="situation" operator="SET_TO">fire</action>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>The Bureau of Fire Protection and Red Cross has been contacted to tackle the incident. Please stay safe.</item>
+                        </prompt>
+                    </output>
+                </input>
+                <input>
+                    <grammar>
+                        <item>Injury</item>
+                        <item>injury</item>
+                        <item>* is injured</item>
+                        <item>* injury</item>
+                        <item>I am injured</item>
+                    </grammar>
+                    <action varName="situation" operator="SET_TO">injury</action>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>Red Cross has been contacted to get on the situation. An ambulance will be sent. Please stay safe.</item>
+                        </prompt>
+                    </output>
+                </input>
+                <input>
+                    <grammar>
+                        <item>Stampede</item>
+                        <item>stampede at *</item>
+                        <item>stampede</item>
+                    </grammar>
+                    <action varName="situation" operator="SET_TO">stampede</action>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>NDRRMC and Red Cross has been contacted to help your situation. Please stay safe.</item>
+                        </prompt>
+                    </output>
+
+                </input>
+    		</folder>
+            <folder label="EvacuationCenter1stPerson" id="folder_2448583">
+                <input>
+                    <grammar>
+                        <item>SMX Convention Center</item>
+                        <item>Mall of Asia</item>
+                    </grammar>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>Please stay away from your area. You may evacuate at the Open Field, 15 miles from your area.</item>
+                        </prompt>
+                    </output>
+                </input>
+            </folder>
+            <folder label="Location1stPerson" id="folder_2449405">
+                <input>
+                    <grammar>
+                        <item>SMX Convention Center</item>
+                        <item>Mall of Asia</item>
+                    </grammar>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>You are in a danger area. NDRRMC and Red Cross will be contacted to find you a safe place immediately.</item>
+                        </prompt>
+                    </output>
+                </input>
+                <input>
+                    <grammar>
+                        <item>Pasig</item>
+                    </grammar>
+                    <action varName="Location" operator="SET_TO">Pasig</action>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>A rescue operation will be sent to {Location}. Please stay safe.</item>
+                        </prompt>
+                    </output>
+                </input>
+                <input>
+                    <grammar>
+                        <item>Blumentritt</item>
+                    </grammar>
+                    <action varName="Location" operator="SET_TO">Blumentritt</action>
+                    <output>
+                        <prompt selectionType="RANDOM">
+                            <item>A rescue operation will be sent to {Location}. Please stay safe.</item>
+                        </prompt>
+                    </output>
+                </input>
+            </folder>
+    		<folder label="Storage" id="Storage"></folder>
+    	</folder>
+    	<folder label="Global" id="Global"></folder>
+    	<folder label="Concepts" id="Concepts">
+         <concepts>
+            <item>help</item>
+            <item>rescue</item>
+            <item>save</item>
+        </concepts>
+
+        </folder>
+    </flow>
+    <variables>
+        <var name="Location" type="TEXT" description="user's location" />
+        <var name="situation" type="TEXT" description="user's situation" />
+    </variables>
+</dialog>
