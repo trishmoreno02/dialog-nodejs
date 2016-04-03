@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dialog</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="_content--dialog">
+			<div class="chat-window">
+				<div class="chat-box">
+					<div class="chat-box--pane">
+						<div class="chat-box--item_WATSON chat-box--item chat-box--item_HIDDEN">
+							<div class="chat-box--container">
+								<div class="img-container chat-box--avatar chat-box--avatar_WATSON">
+									<img src="images/icons/avatar-watson.svg" class="chat-box--avatar-img">
+								</div>
+								<div class="chat-box--message">
+									<div class="chat-box--message-vertical">
+										<p class="chat-box--message-text base--p"></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="chat-box--item_YOU chat-box--item chat-box--item_HIDDEN">
+							<div class="chat-box--container">
+								<div class="chat-box--message">
+									<div class="chat-box--message-vertical">
+										<p class="chat-box--message-text base--p"></p>
+									</div>
+								</div>
+								<div class="img-container chat-box--avatar chat-box--avatar_YOU">
+									<img src="images/icons/avatar-you.svg" class="chat-box--avatar-img">
+								</div>
+							</div>
+						</div>
+						<!-- adding extra space hack -->
+						<div style="height: 15px; visibility: hidden;"></div>
+						<div class="loader">
+							<div class="loader--fallback"><img src="images/watson.gif" width="50" alt=""></div>
+						</div>
+					</div>
+				</div>
+
+				<input type="text" placeholder="Type a response and hit enter" value="" autocomplete="off" class="chat-window--message-input base--text-input">
+			</div>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  	<script type="text/javascript" src="js/demo.js"></script>
+	</body>
+</html>
